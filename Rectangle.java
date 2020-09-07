@@ -143,6 +143,61 @@ public class Rectangle {
         System.out.print("\n");
     }
     
+    /**
+     * Draws the same rectangle multiple times across the screen
+     * @param drawAmt the number of times to draw the rectangle
+     * @param padding the amount of space between the rectangles
+     */
+    public void drawRectRpt(int drawAmt, int padding) {
+        for(int k = 0; k < drawAmt; ++k) {
+            // Top row
+            for(int i = 0; i < length; ++i) {
+                System.out.print("*");
+            }
+            for(int i = 0; i < padding; ++i) {
+                System.out.print(" ");
+            }
+        }
+        // Move down 1
+        System.out.println();
+        
+        for(int k = 0; k < width - 2; ++k) {
+            for(int i = 0; i < drawAmt; ++i) {
+                for(int j = 0; j < length; ++j) {
+                if(j == 0 || j == length - 1) {
+                    System.out.print("*");
+                }
+                else {
+                    System.out.print(" ");
+                }
+            }
+            for(int p = 0; p < padding; ++p) {
+                System.out.print(" ");
+            }
+        }
+            System.out.println();
+        }
+        
+        if(width > 1) {
+            for(int k = 0; k < drawAmt; ++k) {
+                // Top row
+                for(int i = 0; i < length; ++i) {
+                    System.out.print("*");
+                }
+                for(int i = 0; i < padding; ++i) {
+                System.out.print(" ");
+                }
+            }
+        }
+        
+        System.out.print("\n");
+    }
+    
+    /**
+     * Draws a rectangle offset by the indicated amount.
+     * Other than the offset, no different between this and drawRect()
+     * @param offset the amount of spaces to the right to offset the rectangle
+     */
     public void drawRectOffset(int offset) {
         for(int i = 0; i < offset; ++i) {
             System.out.print(" ");
