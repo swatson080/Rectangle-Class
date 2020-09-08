@@ -57,6 +57,12 @@ public class Rectangle {
         id = ++count;
     }
     
+    /**
+     * single arg constructor. 
+     * accepts an argument for the length and generates a random int for
+     * the width
+     * @param length the length of the rectangle
+     */
     public Rectangle(int length) {
         Random rand = new Random();
         width = rand.nextInt(50) + 1;
@@ -64,10 +70,27 @@ public class Rectangle {
         id = ++count;
     }
     
+    /**
+     * Copy constructor
+     * @param rect the rectangle object to copy
+     */
+    public Rectangle(Rectangle rect) {
+        this.length = rect.getLength();
+        this.width = rect.getWidth();
+    }
+    
+    /**
+     * gets the length field
+     * @return the length of the rectangle
+     */
     public int getLength() {
         return length;
     }
     
+    /**
+     * gets the width field
+     * @return the width of the rectangle
+     */
     public int getWidth() {
         return width;
     }
@@ -236,6 +259,39 @@ public class Rectangle {
         }
         
         System.out.print("\n");
+    }
+    
+    /**
+     * draws a filled rectangle
+     */
+    public void fillRect() {
+        for(int i = 0; i < width; ++i) {
+            for(int j = 0; j < length; ++j) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        //System.out.print("\n");
+    }
+    
+    /**
+     * draws a filled rectangle repeatedly across the screen
+     * @param drawAmt the number of times to draw the rectangle
+     * @param padding the amount of space between rectangles
+     */
+    public void fillRectRpt(int drawAmt, int padding) {
+        
+        for(int k = 0; k < width; ++k) {
+            for(int i = 0; i < drawAmt; ++i) {
+                for(int j = 0; j < length; ++j) {
+                    System.out.print("*");
+            }
+            for(int p = 0; p < padding; ++p) {
+                System.out.print(" ");
+            }
+        }
+            System.out.println();
+        }
     }
     
     /**
