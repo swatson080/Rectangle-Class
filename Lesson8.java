@@ -20,12 +20,7 @@ public class Lesson8 {
               
         final int NUM_STEPS = 30;
         
-        drawTriangle(true, NUM_STEPS, 0, 4);
-        drawTriangle(false, NUM_STEPS, 29, 3);
-        drawTriangle(true, NUM_STEPS, 29, 2);
-        drawTriangle(false, NUM_STEPS, 58, 1);
-        
-        drawTriangle(false,8,0,1);
+        //drawTriangle(true,NUM_STEPS,30,1);
         
         Rectangle[] triangle = new Rectangle[5];
         Rectangle[] triangle2 = new Rectangle[5];
@@ -34,11 +29,11 @@ public class Lesson8 {
         
 
             for(int i = 5, j = 0; i > 0; --i, ++j) {
-                triangle[j] = new Rectangle(2,i);
+                triangle[j] = new Rectangle(1,i);
             }
 
             for(int i = 0; i < 5; ++i) {
-                triangle2[i] = new Rectangle(2,i+1);
+                triangle2[i] = new Rectangle(1,i+1);
             }
         
             for(int i = 0; i < 5; ++i) {
@@ -51,33 +46,28 @@ public class Lesson8 {
                 triangle4[i + 5] = triangle[i];
             }
             
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
+        advanceDraw(50,1,triangle3);
+        advanceDraw(50,1,triangle3);
+
         
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
+        advanceDraw(50,1,triangle4);
+        advanceDraw(50,1,triangle4);
         
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
-        advanceDraw(50,0,triangle3);
+        Rectangle[] newRect = new Rectangle[10];
+        newRect[0] = new Rectangle(10,1);
+        newRect[1] = new Rectangle(10,2);
+        newRect[2] = new Rectangle(6,1);
+        newRect[3] = new Rectangle(3,1);
+        newRect[4] = new Rectangle(1,1);
+        newRect[5] = new Rectangle(2,1);
+        newRect[6] = new Rectangle(1,1);
+        newRect[7] = new Rectangle(2,1);
+        newRect[8] = new Rectangle(4,1);
+        newRect[9] = new Rectangle(2,3);
         
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
-        advanceDraw(50,0,triangle4);
+        advanceDraw(0,1,newRect);
+        advanceDraw(0,2,newRect);
+
     }
     
     /**
@@ -113,7 +103,7 @@ public class Lesson8 {
      * @param rect a variable number of Rectangle objects to draw
      */
     public static void advanceDraw(int offset, int padding, Rectangle... rect) {
-        int largestWidth = 1, largeIndex = 0;
+        int largestWidth = 0, largeIndex = 0;
         // Find the rectangle with the largest width and get its index
         for(int i = 0; i < rect.length; ++i) {
             if(rect[i].getWidth() > largestWidth) {
@@ -203,19 +193,45 @@ public class Lesson8 {
             System.out.println();
         }
         
-        // Print the bottom of the rectangles
-        for(int i = 0; i < offset; ++i) {
-            System.out.print(" ");
-        }
-        for(int i = 0; i < rect.length; ++i) {
-            for(int j = 0; j < rect[i].getLength(); ++j) {
-                System.out.print("*");
-            }
-            for(int j = 0; j < padding; ++j) {
+        if(largestWidth == 1);  // Do nothing, because you already printed the rect + the newline
+        else {
+            // Print the bottom of the rectangles
+            for(int i = 0; i < offset; ++i) {
                 System.out.print(" ");
             }
-        }
-        System.out.println();
+            for(int i = 0; i < rect.length; ++i) {
+                /*
+                // This code was originally meant to handle cases where
+                // the largest width of a rectangle was 1 (one). 
+                // It is no longer necessary because the if statement above
+                // handles the case where largestWidth == 1, and has been 
+                // replaced by the much simpler code below. I am keeping it for 
+                // now because I don't know if there any other bugs lurking
+                if(rect[i].getWidth() > 1) {
+                    for(int j = 0; j < rect[i].getLength(); ++j) {
+                        System.out.print("*");
+                    }
+                }
+                else if(rect[i].getWidth() == 1 && largestWidth > 1) {
+                    for(int j = 0; j < rect[i].getLength(); ++j) {
+                        System.out.print("*");
+                    }
+                }
+                else {
+                    for(int j = 0; j < rect[i].getLength(); ++j) {
+                        System.out.print(" ");
+                    }
+                }
+                */
+                for(int j = 0; j < rect[i].getLength(); ++j) {
+                    System.out.print("*");
+                }
+                for(int j = 0; j < padding; ++j) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+            }
     }
     
 }
